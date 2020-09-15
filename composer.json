@@ -1,0 +1,22 @@
+{
+  "name": "ezenteno/drive-upload",
+  "description": "Upload Files in Google Drive,",
+  "license": "MIT",
+  "keywords": ["ezenteno"],
+  "authors": [
+    {
+      "name": "Edwin Zenteno",
+      "email": "edwinzenteno94@gmail.com"
+    }
+  ],
+  "require": {
+    "google/apiclient": "^2.0"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Zenteno\\": "src/"
+    }
+  }
+}
