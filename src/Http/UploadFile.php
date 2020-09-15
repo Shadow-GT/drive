@@ -7,10 +7,10 @@ class UploadFile
 {
     private $gclient;
 
-    public function __construct($secret_client, $client_id)
+    public function __construct($secret_client, $client_id, $path_redirection)
     {
         $client = new Gclient();
-        $this->gclient = $client->conection($secret_client, $client_id);
+        $this->gclient = $client->conection($secret_client, $client_id, $path_redirection);
     }
 
     public function uploadFile($name_file, $file_path, $folder_path = null)
@@ -20,12 +20,12 @@ class UploadFile
 
         $file->setName($name_file);
         $file->setDescription('A test document');
-        $file->setMimeType('image/jpeg');
+        $file->setMimeType('application/pdf');
         $file->setParents(array($folder_path));
         $data = file_get_contents($file_path);
         $service->files->create($file, array(
             'data' => $data,
-            'mimeType' => 'image/jpeg',
+            'mimeType' => 'application/pdf',
             'uploadType' => 'multipart'
         ));
 
