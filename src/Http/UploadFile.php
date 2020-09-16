@@ -9,7 +9,7 @@ class UploadFile
 
     public function __construct($client_id, $secret_client, $path_redirection)
     {
-        $client = new Gclient();
+        $client = new \Zenteno\Http\Gclient();
         $this->gclient = $client->conection($client_id, $secret_client, $path_redirection);
     }
 

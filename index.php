@@ -3,8 +3,8 @@
 require __DIR__.'/vendor/autoload.php';
 
 
-$upload  = new \Zenteno\Http\UploadFile(
-        '46196560743-qp0d79fqo9k3l6720lvanc9gs4j18s9c.apps.googleusercontent.com',
-    '2SAuRqVaj9P5BHZ3Q6Knqymy',
-    'http://drive.io/'
-);
+    $conection = new \Zenteno\Http\UploadFile('46196560743-q5fp7g28gtf856j3bfs7667iaak9nqto.apps.googleusercontent.com','Sh4l0iHtXEocAOG0w48rY-aM','http://drive.io');
+    $url = $conection->createFolder('ahouahia ho ho ');
+    $client = $conection->uploadFile('pdf', 'https://dialnet.unirioja.es/descarga/articulo/3813287.pdf', $url);
+
+
