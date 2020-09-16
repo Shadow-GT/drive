@@ -17,10 +17,6 @@ class Gclient
         $this->gclient->setClientSecret($secret_client);
         $this->gclient->setRedirectUri($path_redirection);
         $this->gclient->setScopes(array('https://www.googleapis.com/auth/drive.file'));
-        $code = isset($_GET['code']) ? $_GET['code'] : NULL;
-        $token = $this->gclient->fetchAccessTokenWithAuthCode($code);
-        $this->gclient->setAccessToken($token);
-        file_put_contents('token/token.json', json_encode($this->gclient->getAccessToken()));
 
         return $this->gclient;
     }
