@@ -7,10 +7,10 @@ class UploadFile
 {
     private $gclient;
 
-    public function __construct($secret_client, $client_id, $path_redirection)
+    public function __construct($client_id, $secret_client, $path_redirection)
     {
         $client = new Gclient();
-        $this->gclient = $client->conection($secret_client, $client_id, $path_redirection);
+        $this->gclient = $client->conection($client_id, $secret_client, $path_redirection);
     }
 
     public function uploadFile($name_file, $file_path, $folder_path = null)

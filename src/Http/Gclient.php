@@ -11,10 +11,10 @@ class Gclient
         $this->gclient = new \Google_Client();
     }
 
-    public function conection($secret_client, $client_id, $path_redirection)
+    public function conection($client_id, $secret_client, $path_redirection)
     {
-        $this->gclient->setClientId($secret_client);
-        $this->gclient->setClientSecret($client_id);
+        $this->gclient->setClientId($client_id);
+        $this->gclient->setClientSecret($secret_client);
         $this->gclient->setRedirectUri($path_redirection);
         $this->gclient->setScopes(array('https://www.googleapis.com/auth/drive.file'));
         $code = isset($_GET['code']) ? $_GET['code'] : NULL;
