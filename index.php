@@ -3,7 +3,7 @@
 require __DIR__.'/vendor/autoload.php';
 
 
-    $conection = new \Zenteno\Http\UploadFile(
+    $conection = new \Zenteno\Http\Gclient(
         '46196560743-97h68eib210ib3kjnoqont5ec560qhgr.apps.googleusercontent.com',
         '7KgfHTBAwxwLRt0yHjxDmhRW',
         'http://drive.io');
