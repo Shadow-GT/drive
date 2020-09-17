@@ -39,11 +39,30 @@ class UploadFile
         }
 
         $service = new \Google_Service_Drive($this->gclient);
+
         $fileMetadata = new \Google_Service_Drive_DriveFile(array(
             'name' => $name,
             'mimeType' => 'application/vnd.google-apps.folder'));
 
+
         $folder = $service->files->create($fileMetadata, array('fields' => 'id'));
+
         return $folder->id;
     }
+
+    public function findFileInsideAFolder($folder_id, $file_name)
+    {
+        $service = new \Google_Service_Drive($this->gclient);
+        $dev = $service->files->listFiles(array('q' => "'$folder_id' in parents"));
+
+        foreach ($dev["files"] as $d){
+            if ($d['name'] == $file_name){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 }

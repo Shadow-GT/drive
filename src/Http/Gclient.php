@@ -17,7 +17,13 @@ class Gclient
         $this->gclient->setClientSecret($secret_client);
         $this->gclient->setRedirectUri($path_redirection);
         $this->gclient->setAccessType('offline');
-        $this->gclient->setScopes(array('https://www.googleapis.com/auth/drive.file'));
+        $this->gclient->setScopes([
+                    \Google_Service_Drive::DRIVE_FILE,
+                    \Google_Service_Drive::DRIVE_READONLY,
+                    \Google_Service_Drive::DRIVE
+                ]
+        );
+
 
         session_start();
 
@@ -25,10 +31,21 @@ class Gclient
             if (isset($_GET['code'])) {
                 $this->gclient->authenticate($_GET['code']);
                 $_SESSION['access_token'] = $this->gclient->getAccessToken();
+                file_put_contents('token/token.json', json_encode($this->gclient->getAccessToken()));
             } else{
                 $this->gclient->setAccessToken($_SESSION['access_token']);
+                file_put_contents('token/token.json', json_encode($_SESSION['access_token']));
             }
         }
+
+
+       if ($this->gclient->isAccessTokenExpired()){
+            $accessToken = json_decode(file_get_contents('token/token.json'), true);
+            $this->gclient->setAccessToken($accessToken);
+            $this->gclient->fetchAccessTokenWithRefreshToken($this->gclient->getRefreshToken());
+            file_put_contents('token/token.json', json_encode($this->gclient->getAccessToken()));
+        }
+
 
         return $this->gclient;
     }
